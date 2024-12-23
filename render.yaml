@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: raspberry-pi-camera
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt  # Use pip to install dependencies
+    startCommand: gunicorn -b 0.0.0.0:5000 app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+    autoDeploy: true
